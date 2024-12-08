@@ -26,7 +26,7 @@
 #'   dairy_example$snp2annot,
 #'   dairy_example$cat_prop,
 #'   pvalue_threshold = 5e-5,
-#'   n_bootstraps = 100
+#'   n_bootstraps = 10
 #' )
 #' 
 #' @export
