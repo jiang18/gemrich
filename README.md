@@ -9,7 +9,7 @@ The package takes [BFMAP](https://github.com/jiang18/bfmap) forward-selection re
 # Dependency: data.table
 
 # Install from GitHub
-devtools::install_github("jjiang26/gemrich")
+devtools::install_github("jiang18/gemrich")
 
 # Coming to CRAN soon
 # install.packages("gemrich")
