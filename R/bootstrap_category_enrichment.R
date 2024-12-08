@@ -21,12 +21,13 @@
 #' 
 #' @examples
 #' data("dairy_example")
+#' # Use 5 bootstraps for quick testing
 #' bootstrap_result <- bootstrap_category_enrichment(
 #'   dairy_example$bfmap,
 #'   dairy_example$snp2annot,
 #'   dairy_example$cat_prop,
 #'   pvalue_threshold = 5e-5,
-#'   n_bootstraps = 10
+#'   n_bootstraps = 5
 #' )
 #' 
 #' @export
