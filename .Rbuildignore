@@ -1,3 +1,5 @@
 ^LICENSE\.md$
 ^README\.md$
 ^\.git$
+^\.gitattributes$
+^\.gitignore$
