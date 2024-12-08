@@ -1,6 +1,7 @@
 # gemrich: Genetic Effect Mapping enRICHment
 
-An R package for estimating genetic effect enrichments in functional annotations from fine-mapping summary statistics.  
+An R package for estimating genetic effect enrichments in functional annotations from fine-mapping summary statistics.
+
 The package takes [BFMAP](https://github.com/jiang18/bfmap) forward-selection results as input. 
 
 ## Installation
