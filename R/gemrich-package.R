@@ -12,7 +12,7 @@
 #' and gene-level posterior probability calculations.
 #'
 #' @section Main Functions:
-#' \strong{Enrichment Analysis:}
+#' \strong{Enrichment Analysis}
 #' \itemize{
 #'   \item \code{estimate_category_enrichment()}: Estimate genetic effect enrichments 
 #'         for annotation categories using maximum likelihood
@@ -20,14 +20,14 @@
 #'         of enrichments with bootstrapping
 #' }
 #'
-#' \strong{Fine-Mapping Integration:}
+#' \strong{Fine-Mapping Integration}
 #' \itemize{
 #'   \item \code{renormalize_prob_by_enrichment()}: Update SNP probabilities using 
 #'         functional enrichment estimates
 #'   \item \code{calc_gene_posterior_prob()}: Calculate gene-level posterior probabilities
 #' }
 #'
-#' \strong{Annotation Processing:}
+#' \strong{Annotation Processing}
 #' \itemize{
 #'   \item \code{map_snp_annotation()}: Map SNPs to functional annotations
 #'   \item \code{calc_category_coverage()}: Calculate genomic coverage of annotation categories
@@ -35,7 +35,7 @@
 #' }
 #'
 #' @section Examples:
-#' \strong{Example Data:}
+#' \strong{Example Data}
 #' 
 #' The package includes a dairy cattle example dataset (\code{dairy_example}) containing:
 #' \itemize{
@@ -45,7 +45,7 @@
 #'   \item \code{gene_annot}: Gene annotations
 #' }
 #'
-#' \strong{Enrichment Analysis:}
+#' \strong{Enrichment Analysis}
 #' \preformatted{
 #' # Estimate enrichments using MLE
 #' mle_result <- estimate_category_enrichment(
@@ -65,7 +65,7 @@
 #' )
 #' }
 #'
-#' \strong{Fine-Mapping Integration:}
+#' \strong{Fine-Mapping Integration}
 #' \preformatted{
 #' # Renormalize probabilities using enrichment estimates
 #' renormed_bfmap <- renormalize_prob_by_enrichment(
