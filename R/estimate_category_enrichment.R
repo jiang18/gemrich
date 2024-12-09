@@ -50,12 +50,13 @@ estimate_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "mult
   cat_prop[[1]] = factor(cat_prop[[1]], levels=cat_prop[[1]])
   cat_names = levels(cat_prop[[1]])
 
+  snpinfo <- copy(as.data.table(snpinfo))
   snp_colname = colnames(snpinfo)[1]
-  snpinfo = snpinfo[,mget(c(snp_colname, annot))]
+  snpinfo = copy(snpinfo)[, .SD, .SDcols = c(snp_colname, annot)]
   snpinfo = snpinfo[snpinfo[[snp_colname]] %in% unique(bfmap$SNPname), ]
   snpinfo[is.na(snpinfo[[annot]]),2] = "remaining"
   if(! all(unique(snpinfo[[annot]]) %in% cat_names) ) {
-	stop(paste("Some categories in 'snpinfo' are missing in 'cat_prop'.\n"), call.=FALSE)
+    stop(paste("Some categories in 'snpinfo' are missing in 'cat_prop'.\n"), call.=FALSE)
   }
   snpinfo[[annot]] = factor(snpinfo[[annot]], levels=cat_names)
   cat_cnt = table(snpinfo[[annot]])
@@ -119,7 +120,7 @@ estimate_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "mult
               upper=rep(1-eps, npars),
               control=list(fnscale=-1)), silent=TRUE)
     # If optim fails, try constrOptim
-    if(inherits(result, "try-error") || result$convergence != 0) {
+    if(inherits(result, "try-error") || result$convergence != 0 || any(result$par < 1e-3)) {
       cat("Initial optimization failed. Trying constrOptim...\n")
       flush.console()
 
@@ -171,6 +172,7 @@ estimate_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "mult
 
   mle <- result$par
   prob_mle = copy(cat_prop)
+  setDT(prob_mle)
   prob_mle[, paste0("V", 3:7) := NA_real_]
   prob_mle[[3]]=c(mle, 1-sum(mle))
 
@@ -186,7 +188,7 @@ estimate_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "mult
     prob_mle[1, (6:7) := as.list(profileLL_result$ci)]
     prob_mle[2, (6:7) := as.list(rev(1-profileLL_result$ci))]
   }
-  colnames(prob_mle)[c(2:7)] = c("q", "p_MLE", "Hessian_SE", "profile_SE", "profile_95lower", "profile_95upper")
+  colnames(prob_mle)[2:7] = c("q", "p_MLE", "Hessian_SE", "profile_SE", "profile_95lower", "profile_95upper")
   colnames(prob_cov_matrix) = levels(cat_prop[[1]])
 
   enrichment_mle = prob_mle[,1:4]
