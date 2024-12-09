@@ -15,6 +15,21 @@ devtools::install_github("jiang18/gemrich")
 # install.packages("gemrich")
 ```
 
+## Documentation
+```r
+# Package overview
+?gemrich
+
+# Detailed function documentation
+?estimate_category_enrichment
+?bootstrap_category_enrichment
+?renormalize_prob_by_enrichment
+?calc_gene_posterior_prob
+?map_snp_annotation
+?calc_category_coverage
+?calc_snp_category_prop
+```
+
 ## Main Functions
 
 ### Enrichment Analysis
@@ -39,22 +54,7 @@ The package includes a dairy cattle example dataset (`dairy_example`) containing
 - `cat_prop`: SNP proportions in annotation categories
 - `gene_annot`: Gene annotations
 
-### Documentation
-```r
-# Package overview
-?gemrich
-
-# Detailed function documentation
-?estimate_category_enrichment
-?bootstrap_category_enrichment
-?renormalize_prob_by_enrichment
-?calc_gene_posterior_prob
-?map_snp_annotation
-?calc_category_coverage
-?calc_snp_category_prop
-```
-
-### Enrichment Estimation
+### Enrichment Analysis
 ```r
 library(gemrich)
 
@@ -79,7 +79,7 @@ bootstrap_result <- bootstrap_category_enrichment(
 )
 ```
 
-### Update Fine-Mapping Results
+### Fine-Mapping Integration
 ```r
 # Renormalize probabilities using enrichment estimates
 renormed_bfmap <- renormalize_prob_by_enrichment(
