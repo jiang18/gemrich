@@ -52,8 +52,9 @@ bootstrap_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "mul
   cat_prop[[1]] = factor(cat_prop[[1]], levels=cat_prop[[1]])
   cat_names = levels(cat_prop[[1]])
 
+  snpinfo <- copy(as.data.table(snpinfo))
   snp_colname = colnames(snpinfo)[1]
-  snpinfo = snpinfo[,mget(c(snp_colname, annot))]
+  snpinfo = copy(snpinfo)[, .SD, .SDcols = c(snp_colname, annot)]
   snpinfo = snpinfo[snpinfo[[snp_colname]] %in% unique(bfmap$SNPname), ]
   snpinfo[is.na(snpinfo[[annot]]),2] = "remaining"
   if(! all(unique(snpinfo[[annot]]) %in% cat_names) ) {
@@ -84,6 +85,7 @@ bootstrap_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "mul
 
   cat(paste("\nCompleted reading all data files.\n",
       "The ML estimation uses ", nloci, " loci and ", nrow(bfmap)," variants.\n",sep=""))
+  flush.console()
 
   logLL = function(par) {
     par <- c(par, 1-sum(par))   # sum(par) = 1
@@ -139,6 +141,9 @@ bootstrap_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "mul
       bootstrap[i,] = c(result$maximum, 1-result$maximum, result$objective)
     } else {
       result <- optim(par, logLL, method="L-BFGS-B", lower=rep(1e-6, npars), upper=rep(0.999999, npars), control=list(fnscale=-1))
+      # ui = rbind(diag(npars), rep(-1, npars))
+      # ci = c(rep(1e-6, npars), -1)
+      # result <- constrOptim(theta=par, f=logLL, grad=NULL, ui=ui, ci=ci, control=list(fnscale=-1))
       bootstrap[i,] = c(result$par, 1-sum(result$par), result$value)
     }
     cat(sprintf("\rCompleted replicate %d", i))
