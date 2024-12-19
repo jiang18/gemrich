@@ -1,6 +1,6 @@
 Package: gemrich
 Title: Genetic Effect Mapping enRICHment
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: 
    person("Jicai", "Jiang", , "jjiang26@ncsu.edu", role = c("aut", "cre"),
           comment = c(ORCID = "0000-0001-6890-7539"))
