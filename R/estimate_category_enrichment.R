@@ -183,7 +183,7 @@ estimate_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "mult
   prob_mle[[4]] = sqrt(diag(prob_cov_matrix))
   if(npars == 1) {
     profileLL_result <- profile_se(mle)
-    cat("Completed profile likelihood (used only for binary snpinfoations).\n")
+    cat("Completed profile likelihood (used only for binary annotations).\n")
     prob_mle[[5]] = rep(profileLL_result$se, 2)
     prob_mle[1, (6:7) := as.list(profileLL_result$ci)]
     prob_mle[2, (6:7) := as.list(rev(1-profileLL_result$ci))]
