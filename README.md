@@ -2,11 +2,11 @@
 
 An R package for estimating genetic effect enrichments in functional annotations from fine-mapping summary statistics.
 
-The package takes [BFMAP](https://github.com/jiang18/bfmap) forward-selection results as input. 
+The package takes [BFMAP](https://github.com/jiang18/bfmap) results as input. 
 
 ## Installation
 ```r
-# Dependency: data.table
+# Dependencies: data.table and Rcpp
 
 # Install from GitHub
 devtools::install_github("jiang18/gemrich")
@@ -24,7 +24,7 @@ devtools::install_github("jiang18/gemrich")
 ?estimate_category_enrichment
 ?bootstrap_category_enrichment
 ?renormalize_prob_by_enrichment
-?calc_gene_posterior_prob
+?calc_feature_posterior_prob
 ?map_snp_annotation
 ?calc_category_coverage
 ?calc_snp_category_prop
@@ -34,11 +34,11 @@ devtools::install_github("jiang18/gemrich")
 
 ### Enrichment Analysis
 - `estimate_category_enrichment()`: Estimate genetic effect enrichments for annotation categories using maximum likelihood
-- `bootstrap_category_enrichment()`: Compute empirical distributions of enrichments with bootstrapping 
+- `bootstrap_category_enrichment()`: Compute empirical distributions of enrichments with bootstrapping (not available for SSS)
 
 ### Fine-Mapping Integration 
-- `renormalize_prob_by_enrichment()`: Update SNP probabilities using functional enrichment estimates
-- `calc_gene_posterior_prob()`: Calculate gene-level posterior probabilities
+- `renormalize_prob_by_enrichment()`: Update posterior probabilities using functional enrichment estimates
+- `calc_feature_posterior_prob()`: Calculate genomic-feature posterior probabilities
 
 ### Annotation Processing
 - `map_snp_annotation()`: Map SNPs to functional annotations
@@ -49,7 +49,7 @@ devtools::install_github("jiang18/gemrich")
 
 ### Example Data
 The package includes a dairy cattle example dataset (`dairy_example`) containing:
-- `bfmap`: Fine-mapping summary statistics for five dairy production traits
+- `bfmap`: BFMAP forward-selection summary statistics for five dairy production traits
 - `snp2annot`: SNP functional annotations
 - `cat_prop`: SNP proportions in annotation categories
 - `gene_annot`: Gene annotations
@@ -89,7 +89,7 @@ renormed_bfmap <- renormalize_prob_by_enrichment(
 )
 
 # Calculate gene-level probabilities
-gene_probs <- calc_gene_posterior_prob(
+gene_probs <- calc_feature_posterior_prob(
   dairy_example$bfmap,
   dairy_example$gene_annot,
   extension = 1000, # extend gene boundaries by 1kb
