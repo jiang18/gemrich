@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 logLL_rcpp <- function(par, locus_info, log_freq) {
-    .Call('_gemrich_logLL_rcpp', PACKAGE = 'gemrich', par, locus_info, log_freq)
+    .Call(`_gemrich_logLL_rcpp`, par, locus_info, log_freq)
 }
 
