@@ -232,10 +232,6 @@ estimate_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "mult
 # SSS function 
 estimate_category_enrichment_sss <- function(bfmap, snpinfo, cat_prop, annot = "multi_cat", model_prob_cutoff = 0.8) {
   
-  # Make sure "logLL_rcpp.cpp" is in the same directory
-  sourceCpp("src/logLL_rcpp.cpp")
-  cat("C++ function 'logLL_rcpp' is ready.\n")
-
   # Input validation
   model_prob_cutoff <- as.numeric(model_prob_cutoff)
   if(is.na(model_prob_cutoff)) {
