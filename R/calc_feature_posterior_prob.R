@@ -23,14 +23,14 @@
 #' # Forward selection
 #' feature_probs = calc_feature_posterior_prob(
 #'   dairy_example$bfmap, 
-#'   dairy_example$feature, 
+#'   dairy_example$gene_annot, 
 #'   extension = 1000, 
 #'   pvalue_threshold = 5e-7
 #' )
 #' # SSS
 #' # feature_probs_sss = calc_feature_posterior_prob(
 #' #   sss_model_data,
-#' #   feature, 
+#' #   gene_annot, 
 #' #   extension = 3000,
 #' #   input_type = "sss",
 #' #   pip = sss_pip_data

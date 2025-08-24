@@ -1,6 +1,6 @@
 #' Example dairy cattle data
 #'
-#' Sample dataset from our dairy cattle genetic fine-mapping study (2024+).
+#' Sample dataset from our dairy cattle genetic fine-mapping study (Journal of Dairy Science, 2025).
 #'
 #' @format A list containing four data tables:
 #' \describe{
@@ -10,5 +10,5 @@
 #'   \item{gene_annot}{Gene annotations with genomic positions}
 #' }
 #'
-#' @source TBA (2024+)
+#' @source TBA (2025)
 "dairy_example"

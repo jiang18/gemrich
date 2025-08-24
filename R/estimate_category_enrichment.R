@@ -15,7 +15,7 @@
 #'        Only signals with lead SNP p-values below this threshold are included in the analysis.
 #'        Only used for forward selection format.
 #' @param input_type Character string specifying the BFMAP input format: "forward_selection" (default) or "sss".
-#' @param model_prob_cutoff A numeric threshold for cumulative model probability cutoff (default: 0.95).
+#' @param model_prob_cutoff A numeric threshold for cumulative model probability cutoff (default: 0.8).
 #'        Only used for SSS format. Models are included until cumulative probability exceeds this threshold.
 #' 
 #' @return A list containing:
@@ -40,12 +40,12 @@
 #' #   snp2annot,
 #' #   cat_prop,
 #' #   input_type = "sss",
-#' #   model_prob_cutoff = 0.95
+#' #   model_prob_cutoff = 0.9
 #' # )
 #' 
 #' @export
 #' 
-estimate_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "multi_cat", pvalue_threshold = 5e-5, input_type = "forward_selection", model_prob_cutoff = 0.95) {
+estimate_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "multi_cat", pvalue_threshold = 5e-5, input_type = "forward_selection", model_prob_cutoff = 0.8) {
   
   # Handle SSS format
   if (input_type == "sss") {
@@ -230,7 +230,7 @@ estimate_category_enrichment <- function(bfmap, snpinfo, cat_prop, annot = "mult
 }
 
 # SSS function 
-estimate_category_enrichment_sss <- function(bfmap, snpinfo, cat_prop, annot = "multi_cat", model_prob_cutoff = 0.95) {
+estimate_category_enrichment_sss <- function(bfmap, snpinfo, cat_prop, annot = "multi_cat", model_prob_cutoff = 0.8) {
   
   # Make sure "logLL_rcpp.cpp" is in the same directory
   sourceCpp("src/logLL_rcpp.cpp")

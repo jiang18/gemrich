@@ -14,12 +14,12 @@ A list containing four data tables:
 }
 }
 \source{
-TBA (2024+)
+TBA (2025)
 }
 \usage{
 dairy_example
 }
 \description{
-Sample dataset from our dairy cattle genetic fine-mapping study (2024+).
+Sample dataset from our dairy cattle genetic fine-mapping study (Journal of Dairy Science, 2025).
 }
 \keyword{datasets}
