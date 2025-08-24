@@ -2,14 +2,13 @@
 #'
 #' @description
 #' An R package for estimating genetic effect enrichments in functional annotations 
-#' from fine-mapping summary statistics. The package takes BFMAP forward-selection 
-#' results as input.
+#' from fine-mapping summary statistics. The package takes BFMAP results as input.
 #'
 #' @details
 #' The package provides tools for genetic effect enrichment analysis and 
 #' fine-mapping integration. Key functionalities include enrichment estimation, 
 #' bootstrapping for empirical distributions, enrichment-informed probability renormalization, 
-#' and gene-level posterior probability calculations.
+#' and genomic-feature posterior probability calculations.
 #'
 #' @section Main Functions:
 #' \strong{Enrichment Analysis}
@@ -24,7 +23,7 @@
 #' \itemize{
 #'   \item \code{renormalize_prob_by_enrichment()}: Update SNP probabilities using 
 #'         functional enrichment estimates
-#'   \item \code{calc_gene_posterior_prob()}: Calculate gene-level posterior probabilities
+#'   \item \code{calc_feature_posterior_prob()}: Calculate genomic-feature posterior probabilities
 #' }
 #'
 #' \strong{Annotation Processing}
@@ -39,7 +38,7 @@
 #' 
 #' The package includes a dairy cattle example dataset (\code{dairy_example}) containing:
 #' \itemize{
-#'   \item \code{bfmap}: Fine-mapping summary statistics for five dairy production traits
+#'   \item \code{bfmap}: BFMAP forward-selection summary statistics for five dairy production traits
 #'   \item \code{snp2annot}: SNP functional annotations
 #'   \item \code{cat_prop}: SNP proportions in annotation categories
 #'   \item \code{gene_annot}: Gene annotations
@@ -74,8 +73,8 @@
 #'   mle_result$enrichment_mle
 #' )
 #'
-#' # Calculate gene-level probabilities
-#' gene_probs <- calc_gene_posterior_prob(
+#' # Calculate genomic-feature posterior probabilities
+#' gene_probs <- calc_feature_posterior_prob(
 #'   dairy_example$bfmap,
 #'   dairy_example$gene_annot,
 #'   extension = 1000, # extend gene boundaries by 1kb
@@ -86,7 +85,7 @@
 #' @author Jicai Jiang \email{jjiang26@ncsu.edu}
 #'
 #' @seealso
-#' \href{https://github.com/jiang18/bfmap}{BFMAP} for the forward-selection fine-mapping method
+#' \href{https://github.com/jiang18/bfmap}{BFMAP} for the fine-mapping method
 #' used to generate input data.
 #'
 #' @docType package
