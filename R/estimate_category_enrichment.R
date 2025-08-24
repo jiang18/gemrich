@@ -364,7 +364,6 @@ estimate_category_enrichment_sss <- function(bfmap, snpinfo, cat_prop, annot = "
   flush.console()
   
   result <- NULL
-  print(logLL_rcpp(par, locus_info = locus_info, log_freq = log_freq))
   
   if(npars == 1) {
     result <- optim(par, logLL_rcpp, method="Brent",
