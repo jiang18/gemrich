@@ -405,7 +405,7 @@ estimate_category_enrichment_sss <- function(bfmap, snpinfo, cat_prop, annot = "
   flush.console()
   
   # Profile likelihood for binary case only (single dimension)
-  profile_se <- function(mle, delta = seq(-0.1, 0.1, length=41)) {
+  profile_se <- function(mle, delta = seq(-3*sqrt(covar_mle[1,1]), 3*sqrt(covar_mle[1,1]), length=31)) {
     # Calculate profile likelihood around MLE
     profile_points <- mle + delta
     profile_points <- profile_points[profile_points>0 & profile_points<1]
@@ -420,14 +420,14 @@ estimate_category_enrichment_sss <- function(bfmap, snpinfo, cat_prop, annot = "
     valid_points <- profile_points[profile_values >= cutoff]
 
     # Handle case where valid_points may be empty
-    if(length(valid_points) > 40) {
+    if(length(valid_points) > 30) {
       # Fallback: use a large SE to signal estimation problems
       se <- 0.5  # Large value indicates unreliable estimate
       ci <- c(0, 1)  # Widest possible CI reflecting complete uncertainty
       warning("Profile likelihood confidence interval estimation failed - using fallback values")
     } else {
       # SE estimate from the range
-      se <- diff(range(valid_points))/3.84
+      se <- diff(range(valid_points))/3.92
       ci <- range(valid_points)
     }
 
