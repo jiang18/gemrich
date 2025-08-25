@@ -409,7 +409,7 @@ estimate_category_enrichment_sss <- function(bfmap, snpinfo, cat_prop, annot = "
     # Calculate profile likelihood around MLE
     profile_points <- mle + delta
     profile_points <- profile_points[profile_points>0 & profile_points<1]
-    profile_values <- sapply(profile_points, logLL_rcpp, , locus_info=locus_info, log_freq=log_freq)
+    profile_values <- sapply(profile_points, logLL_rcpp, locus_info=locus_info, log_freq=log_freq)
 
     # Maximum likelihood at MLE
     max_ll <- max(profile_values)
